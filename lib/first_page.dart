@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'TaskModel.dart';
 
 class First_page extends StatefulWidget {
@@ -8,6 +9,8 @@ class First_page extends StatefulWidget {
 }
 
 class _First_pageState extends State<First_page> {
+  DateTime _dateTime;
+
   final name = TextEditingController();
   final job = TextEditingController();
   final rent = TextEditingController();
@@ -27,23 +30,44 @@ class _First_pageState extends State<First_page> {
           children: <Widget>[
             Text("Зээл бүртгэх талбар"),
             TextField(
-              decoration: InputDecoration(labelText: 'Зээлж буй хүний нэр'),
               controller: name,
+              // obscureText: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Зээлж буй хүний нэр',
+              ),
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Эрхэлдэг ажил, алба'),
               controller: job,
+              // obscureText: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Эрхэлдэг ажил, алба',
+              ),
             ),
             TextField(
-              decoration:
-                  InputDecoration(labelText: 'Хэдэн төрөг зээлдэж байгаа'),
+              keyboardType: TextInputType.datetime,
+              // obscureText: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Хэдэн төрөг зээлдэж байгаа',
+              ),
+              // validator: (String value) {
+              //   if (value.isEmpty) {
+              //     return 'Phone number (+x xxx-xxx-xxxx)';
+              //   }
+              //   return null;
+              // },
               controller: rent,
             ),
             FlatButton(
               child: Text("Хадгалах"),
               onPressed: () {
-                currentTask =
-                    TaskModel(name: name.text, job: job.text, rent: rent.text);
+                currentTask = TaskModel(
+                  name: name.text,
+                  job: job.text,
+                  rent: rent.text,
+                );
                 _todoHelper.insertTask(currentTask);
               },
               color: Colors.blue,

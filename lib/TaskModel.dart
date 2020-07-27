@@ -13,14 +13,20 @@ class TaskModel {
   final String name;
   final String job;
   final String rent;
-
-  TaskModel({this.id, this.name, this.job, this.rent});
+  final DateTime date = DateTime.now();
+  TaskModel({
+    this.id,
+    this.name,
+    this.job,
+    this.rent,
+    date,
+  });
 
   Map<String, dynamic> toMap() {
     return {
       Column_name: this.name,
       Column_job: this.job,
-      Column_rent: this.rent
+      Column_rent: this.rent,
     };
   }
 }
@@ -36,12 +42,12 @@ class TodoHelper {
     db = await openDatabase(join(await getDatabasesPath(), "databses.db"),
         onCreate: (db, version) {
       return db.execute(
-          "CREATE TABLE $tableName($Column_id INTEGER PRIMARY KEY AUTOINCREMENT, $Column_name TEXT, $Column_job TEXT, $Column_rent TEXT, $Column_date_rent Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
+          "CREATE TABLE $tableName($Column_id INTEGER PRIMARY KEY AUTOINCREMENT, $Column_name TEXT, $Column_job TEXT, $Column_rent TEXT, $Column_date_rent DATETIME DEFAULT CURRENT_TIMESTAMP)");
     }, version: 1);
   }
 
   Future<void> insertTask(TaskModel task) async {
-    print(task.toString());
+    print(task.toMap());
     try {
       db.insert(tableName, task.toMap(),
           conflictAlgorithm: ConflictAlgorithm.replace);
@@ -71,6 +77,7 @@ class TodoHelper {
         name: tasks[i][Column_name],
         job: tasks[i][Column_name],
         rent: tasks[i][Column_rent],
+        date: tasks[i][Column_date_rent],
       );
     });
   }

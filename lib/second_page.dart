@@ -45,7 +45,7 @@ class _SecondPageState extends State<SecondPage> {
                           padding: EdgeInsets.all(10.0),
                         ),
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: Column(children: [
                             Container(
                               padding: EdgeInsets.all(20),
@@ -106,21 +106,25 @@ class _SecondPageState extends State<SecondPage> {
                             ),
                           ]),
                         ),
-                        // Text(
-                        //   tasks[index].rent,
-                        //   style: TextStyle(
-                        //       fontSize: 10, fontWeight: FontWeight.w300),
-                        // ),
-                        FlatButton(
-                          child: Text(
-                            "Устгах",
-                            style: TextStyle(fontSize: 10.0),
-                          ),
-                          onPressed: () {
-                            _todoHelper.deleteTask(tasks[index].id);
-                          },
-                          color: Colors.red[700],
-                          textColor: Colors.white,
+                        Column(
+                          children: <Widget>[
+                            FlatButton(
+                              child: Text(
+                                "Устгах",
+                                style: TextStyle(fontSize: 10.0),
+                              ),
+                              onPressed: () {
+                                _todoHelper.deleteTask(tasks[index].id);
+                              },
+                              color: Colors.red[700],
+                              textColor: Colors.white,
+                            ),
+                            Text(
+                              tasks[index].date.toString().substring(0, 10),
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w300),
+                            ),
+                          ],
                         ),
                       ],
                     ),
