@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'first_page1.dart';
+import 'first_page.dart';
 import 'second_page.dart';
 
 class BottomNavigationBarController extends StatefulWidget {
@@ -11,7 +11,7 @@ class BottomNavigationBarController extends StatefulWidget {
 class _BottomNavigationBarControllerState
     extends State<BottomNavigationBarController> {
   final List<Widget> pages = [
-    MyHomePage(
+    First_page(
       key: PageStorageKey('Page1'),
     ),
     SecondPage(
@@ -27,16 +27,16 @@ class _BottomNavigationBarControllerState
         onTap: (int index) => setState(() => _selectedIndex = index),
         currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Нүүр')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add), title: Text('First Page')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.list), title: Text('Second Page')),
+              icon: Icon(Icons.list), title: Text('Жагсаалт')),
         ],
       );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerEnableOpenDragGesture: false,
       bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
       body: PageStorage(
         child: pages[_selectedIndex],

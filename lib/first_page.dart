@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
 import 'TaskModel.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class First_page extends StatefulWidget {
+  First_page({Key key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
+  _First_pageState createState() => _First_pageState();
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final textController = TextEditingController();
+class _First_pageState extends State<First_page> {
+  final name = TextEditingController();
+  final job = TextEditingController();
+  final rent = TextEditingController();
 
   List<TaskModel> tasks = [];
 
@@ -38,50 +25,30 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.all(32),
         child: Column(
           children: <Widget>[
+            Text("Зээл бүртгэх талбар"),
             TextField(
-              controller: textController,
+              decoration: InputDecoration(labelText: 'Зээлж буй хүний нэр'),
+              controller: name,
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Эрхэлдэг ажил, алба'),
+              controller: job,
+            ),
+            TextField(
+              decoration:
+                  InputDecoration(labelText: 'Хэдэн төрөг зээлдэж байгаа'),
+              controller: rent,
             ),
             FlatButton(
-              child: Text("Insert"),
+              child: Text("Хадгалах"),
               onPressed: () {
-                currentTask = TaskModel(name: textController.text);
+                currentTask =
+                    TaskModel(name: name.text, job: job.text, rent: rent.text);
                 _todoHelper.insertTask(currentTask);
               },
               color: Colors.blue,
               textColor: Colors.white,
             ),
-            FlatButton(
-              child: Text("Show All Task"),
-              onPressed: () async {
-                List<TaskModel> list = await _todoHelper.getAllTask();
-
-                setState(() {
-                  tasks = list;
-                });
-              },
-              color: Colors.orange[400],
-              textColor: Colors.white,
-            ),
-            Expanded(
-              child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Text("${tasks[index].id}"),
-                    title: Text("${tasks[index].name}"),
-                    trailing: FlatButton(
-                      child: Text("Delete"),
-                      onPressed: () {
-                        _todoHelper.deleteTask(tasks[index].id);
-                      },
-                      color: Colors.red,
-                      textColor: Colors.white,
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => Divider(),
-                itemCount: tasks.length,
-              ),
-            )
           ],
         ),
       ),
