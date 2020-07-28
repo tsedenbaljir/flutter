@@ -6,6 +6,8 @@ final String Column_id = "id";
 final String Column_name = "name";
 final String Column_job = "job";
 final String Column_rent = "rent";
+final String Column_phone = "phone";
+final String Column_most_phone = "most_phone";
 final String Column_date_rent = "date";
 
 class TaskModel {
@@ -13,12 +15,17 @@ class TaskModel {
   final String name;
   final String job;
   final String rent;
+  final String phone;
+  final String most_phone;
   final DateTime date = DateTime.now();
+
   TaskModel({
     this.id,
     this.name,
     this.job,
     this.rent,
+    this.phone,
+    this.most_phone,
     date,
   });
 
@@ -27,6 +34,8 @@ class TaskModel {
       Column_name: this.name,
       Column_job: this.job,
       Column_rent: this.rent,
+      Column_phone: this.phone,
+      Column_most_phone: this.most_phone,
     };
   }
 }
@@ -39,10 +48,10 @@ class TodoHelper {
   }
 
   Future<void> initDatabase() async {
-    db = await openDatabase(join(await getDatabasesPath(), "databses.db"),
+    db = await openDatabase(join(await getDatabasesPath(), "tests.db"),
         onCreate: (db, version) {
       return db.execute(
-          "CREATE TABLE $tableName($Column_id INTEGER PRIMARY KEY AUTOINCREMENT, $Column_name TEXT, $Column_job TEXT, $Column_rent TEXT, $Column_date_rent DATETIME DEFAULT CURRENT_TIMESTAMP)");
+          "CREATE TABLE $tableName($Column_id INTEGER PRIMARY KEY AUTOINCREMENT, $Column_name TEXT, $Column_job TEXT, $Column_phone TEXT, $Column_most_phone TEXT, $Column_rent TEXT, $Column_date_rent DATETIME DEFAULT CURRENT_TIMESTAMP)");
     }, version: 1);
   }
 
@@ -75,8 +84,10 @@ class TodoHelper {
       return TaskModel(
         id: tasks[i][Column_id],
         name: tasks[i][Column_name],
-        job: tasks[i][Column_name],
+        job: tasks[i][Column_job],
         rent: tasks[i][Column_rent],
+        phone: tasks[i][Column_phone],
+        most_phone: tasks[i][Column_most_phone],
         date: tasks[i][Column_date_rent],
       );
     });

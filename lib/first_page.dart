@@ -14,6 +14,8 @@ class _First_pageState extends State<First_page> {
   final name = TextEditingController();
   final job = TextEditingController();
   final rent = TextEditingController();
+  final phone = TextEditingController();
+  final most_phone = TextEditingController();
 
   List<TaskModel> tasks = [];
 
@@ -31,7 +33,6 @@ class _First_pageState extends State<First_page> {
             Text("Зээл бүртгэх талбар"),
             TextField(
               controller: name,
-              // obscureText: true,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Зээлж буй хүний нэр',
@@ -39,25 +40,30 @@ class _First_pageState extends State<First_page> {
             ),
             TextField(
               controller: job,
-              // obscureText: true,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Эрхэлдэг ажил, алба',
               ),
             ),
             TextField(
-              keyboardType: TextInputType.datetime,
-              // obscureText: true,
+              controller: phone,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Утасны дугаар',
+              ),
+            ),
+            TextField(
+              controller: most_phone,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Ойрын хүний утас',
+              ),
+            ),
+            TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Хэдэн төрөг зээлдэж байгаа',
               ),
-              // validator: (String value) {
-              //   if (value.isEmpty) {
-              //     return 'Phone number (+x xxx-xxx-xxxx)';
-              //   }
-              //   return null;
-              // },
               controller: rent,
             ),
             FlatButton(
@@ -67,6 +73,8 @@ class _First_pageState extends State<First_page> {
                   name: name.text,
                   job: job.text,
                   rent: rent.text,
+                  phone: phone.text,
+                  most_phone: most_phone.text,
                 );
                 _todoHelper.insertTask(currentTask);
               },

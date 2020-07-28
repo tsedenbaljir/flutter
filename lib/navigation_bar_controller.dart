@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'first_page.dart';
 import 'second_page.dart';
+import 'last_page.dart';
 
 class BottomNavigationBarController extends StatefulWidget {
   @override
@@ -17,6 +18,9 @@ class _BottomNavigationBarControllerState
     SecondPage(
       key: PageStorageKey('Page2'),
     ),
+    Last_page(
+      key: PageStorageKey('Page3'),
+    ),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -30,6 +34,8 @@ class _BottomNavigationBarControllerState
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Нүүр')),
           BottomNavigationBarItem(
               icon: Icon(Icons.list), title: Text('Жагсаалт')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.library_books), title: Text('Тайлан')),
         ],
       );
 
