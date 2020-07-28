@@ -35,13 +35,14 @@ class _BottomNavigationBarControllerState
           BottomNavigationBarItem(
               icon: Icon(Icons.list), title: Text('Жагсаалт')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.library_books), title: Text('Тайлан')),
+              icon: Icon(Icons.library_books), title: Text('Товчлол')),
         ],
       );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Ломбард')),
       drawerEnableOpenDragGesture: false,
       bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
       body: PageStorage(

@@ -30,41 +30,76 @@ class _First_pageState extends State<First_page> {
         padding: EdgeInsets.all(32),
         child: Column(
           children: <Widget>[
-            Text("Зээл бүртгэх талбар"),
-            TextField(
-              controller: name,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Зээлж буй хүний нэр',
+            Container(
+              padding: EdgeInsets.only(top: 10),
+              child: Column(
+                children: <Widget>[
+                  Text("Зээл бүртгэх талбар"),
+                  TextField(
+                    controller: name,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Зээлж буй хүний нэр',
+                    ),
+                  ),
+                ],
               ),
             ),
-            TextField(
-              controller: job,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Эрхэлдэг ажил, алба',
+            Container(
+              padding: EdgeInsets.only(top: 10),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    controller: job,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Эрхэлдэг ажил, алба',
+                    ),
+                  ),
+                ],
               ),
             ),
-            TextField(
-              controller: phone,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Утасны дугаар',
+            Container(
+              padding: EdgeInsets.only(top: 10),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    controller: phone,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Утасны дугаар',
+                    ),
+                  ),
+                ],
               ),
             ),
-            TextField(
-              controller: most_phone,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Ойрын хүний утас',
+            Container(
+              padding: EdgeInsets.only(top: 10),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    controller: most_phone,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Ойрын хүний утас',
+                    ),
+                  ),
+                ],
               ),
             ),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Хэдэн төрөг зээлдэж байгаа',
+            Container(
+              padding: EdgeInsets.only(top: 10),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Хэдэн төрөг зээлдэж байгаа',
+                    ),
+                    controller: rent,
+                  ),
+                ],
               ),
-              controller: rent,
             ),
             FlatButton(
               child: Text("Хадгалах"),
